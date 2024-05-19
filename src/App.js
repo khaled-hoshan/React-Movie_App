@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
+import searchIcon from "./search.svg";
+import "./App.css";
 
 const API_URL = "http://www.omdbapi.com?apikey=7d0bc5e0";
 
@@ -25,20 +27,23 @@ const App = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <img src="" alt="search" onClick={() => fetchMovies(search)} />
-
-        {movies?.length > 0 ? (
-          <div className="container">
-            {movies.map((movie) => (
-              <MovieCard movie={movie} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty">
-            <h2>NOT FOUND</h2>
-          </div>
-        )}
+        <img
+          src={searchIcon}
+          alt="search"
+          onClick={() => fetchMovies(search)}
+        />
       </div>
+      {movies?.length > 0 ? (
+        <div className="container">
+          {movies.map((movie) => (
+            <MovieCard movie={movie} />
+          ))}
+        </div>
+      ) : (
+        <div className="empty">
+          <h2>NOT FOUND</h2>
+        </div>
+      )}
     </div>
   );
 };
